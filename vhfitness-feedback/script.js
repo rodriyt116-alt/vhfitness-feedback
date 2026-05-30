@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+import { getFirestore, collection, addDoc, serverTimestamp, query, where, getDocs, deleteDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyD4zDuVmsmFFl9YQjF898Aw_3DLEnrZbe4",
@@ -90,6 +90,7 @@ if (form) {
 
         const feedback = {
             data: new Date().toISOString(),
+            createdAt: serverTimestamp(), // 🔥 LINHA NOVA: Crucial para o Firebase contar os 15 dias!
             treino: t,
             limpeza: l,
             atendimento: a,
@@ -119,3 +120,26 @@ if (form) {
         }
     });
 }
+
+// FUNÇÃO AUTOMÁTICA QUE APAGA VOTOS COM MAIS DE 15 DIAS
+async function limparDadosAntigos() {
+    try {
+        const quinzeDiasAtras = new Date();
+        quinzeDiasAtras.setDate(quinzeDiasAtras.getDate() - 15);
+
+        // Procura no Firebase documentos onde a data seja menor que há 15 dias
+        const q = query(collection(db, "feedbacks"), where("createdAt", "<", quinzeDiasAtras));
+        const querySnapshot = await getDocs(q);
+        
+        // Apaga um por um
+        querySnapshot.forEach(async (doc) => {
+            await deleteDoc(doc.ref);
+        });
+        console.log("Limpeza automática de 15 dias concluída com sucesso!");
+    } catch (error) {
+        console.error("Erro na limpeza automática:", error);
+    }
+}
+
+// Executa a limpeza sempre que o site abre
+document.addEventListener("DOMContentLoaded", limparDadosAntigos);
