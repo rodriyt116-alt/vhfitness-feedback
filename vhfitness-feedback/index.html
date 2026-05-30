@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avaliação Semanal - VHFitness</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container py-4 text-center form-container">
+        
+        <!-- Logótipo Oficial -->
+        <div class="mb-4">
+            <img src="logotipo_vh.jpg" alt="VHFitness Logo" class="img-fluid rounded-circle shadow-sm" style="max-width: 140px;">
+            <h2 class="fw-bold mt-3 text-white">VHFitness</h2>
+            <p class="text-muted-custom">A tua opinião molda o nosso treino. Ajuda-nos a melhorar!</p>
+        </div>
+        
+        <form id="feedbackForm" class="card p-4 shadow-lg text-start border-0 backend-card">
+            
+            <div class="mb-3">
+                <div class="d-flex justify-content-between align-items-center">
+                    <label class="form-label fw-semibold text-white mb-0">🏋️‍♂️ Treino (1 a 5):</label>
+                    <span id="estrelas-treino" class="text-vh-green fw-bold fs-5"></span>
+                </div>
+                <input type="number" id="treino" class="form-control form-control-lg text-center custom-input mt-2" min="1" max="5" placeholder="Digita de 1 a 5" required>
+            </div>
+
+            <div class="mb-3">
+                <div class="d-flex justify-content-between align-items-center">
+                    <label class="form-label fw-semibold text-white mb-0">🧼 Limpeza (1 a 5):</label>
+                    <span id="estrelas-limpeza" class="text-vh-green fw-bold fs-5"></span>
+                </div>
+                <input type="number" id="limpeza" class="form-control form-control-lg text-center custom-input mt-2" min="1" max="5" placeholder="Digita de 1 a 5" required>
+            </div>
+
+            <div class="mb-3">
+                <div class="d-flex justify-content-between align-items-center">
+                    <label class="form-label fw-semibold text-white mb-0">🤝 Atendimento (1 a 5):</label>
+                    <span id="estrelas-atendimento" class="text-vh-green fw-bold fs-5"></span>
+                </div>
+                <input type="number" id="atendimento" class="form-control form-control-lg text-center custom-input mt-2" min="1" max="5" placeholder="Digita de 1 a 5" required>
+            </div>
+
+            <div class="mb-3">
+                <div class="d-flex justify-content-between align-items-center">
+                    <label class="form-label fw-semibold text-white mb-0">⚙️ Equipamentos (1 a 5):</label>
+                    <span id="estrelas-equipamentos" class="text-vh-green fw-bold fs-5"></span>
+                </div>
+                <input type="number" id="equipamentos" class="form-control form-control-lg text-center custom-input mt-2" min="1" max="5" placeholder="Digita de 1 a 5" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-semibold text-vh-green">🚀 O que correu melhor esta semana?</label>
+                <textarea id="pontos_fortes" class="form-control custom-input" rows="2" placeholder="Ex: o ambiente, a música alta, o atendimento da receção, a ajuda dos PTs..."></textarea>
+            </div>
+
+            <div class="mb-4">
+                <label class="form-label fw-semibold text-danger-custom">💡 O que podemos melhorar para a próxima semana?</label>
+                <textarea id="pontos_melhoria" class="form-control custom-input" rows="2" placeholder="Ex: balneários, ar condicionado, poucos pesos, máquina avariada..."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-vh btn-lg w-100 fw-bold shadow-sm">Enviar Avaliação Semanal</button>
+        </form>
+    </div>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>
